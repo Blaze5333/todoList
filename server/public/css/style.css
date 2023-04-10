@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Delicious+Handrawn&family=Josefin+Sans&family=Lakki+Reddy&family=Ubuntu&display=swap');
+h1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 50px;
+}
+.maintext{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 70px;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.lb{
+    color: rgb(0, 0, 0);
+    font-family: 'Josefin Sans', sans-serif;
+}
+img{
+    border-radius: 50%;
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.flex{
+    display: flex;
+
+}
+.size{
+    
+    width: 100vw;
+    background-color:blueviolet;
+    height: 100vh;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    flex-direction: column;
+}
+.size1{
+    width:40vw;
+    background:white;
+    height:74vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 20px;
+}
+h1{
+    color: aqua;
+    font-family: 'Josefin Sans', sans-serif;
+    /* height: 70px; */
+}
+.flex2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.inputfs{
+    width: 20vw;
+    border-radius: 20px;
+    height:25px;
+    background-color: gainsboro;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.input{
+    margin-top: 10px;
+    width: 20vw;
+    border-radius: 20px;
+    height:25px;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: gainsboro;
+}
+
+.btnls{
+    margin-top:20px;
+    margin-bottom: 15px;
+    width: 20vw;
+    height:30px;
+    border-radius: 20px;
+    background-color: gainsboro;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.img{
+    border-radius: 0;
+    height: 110px;
+    width: 22vw;
+    margin-bottom: 4px;
+}
+@media  screen and (max-width:1000px) {
+    .img{
+        width: 44vw;
+    }
+    .size1{
+        width:55vw;
+    }
+    
+}
+@media  screen and (max-width:850px) {
+    .input{
+        width: 42vw;
+    }
+    .inputfs{
+        width: 42vw;
+    }
+    .btnls{
+        width:42vw
+    }
+    
+}
+.loginPage{
+    height: 100vh;
+    width: 100vw;
+    background-color:blueviolet;
+    /* background-image: url('../image/wallpaper.png'); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:rgb(0,6,23);
+    height: 75vh;
+    width: 35vw;
+    border-radius: 30px;
+}
+.inputLogin{
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: gainsboro;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    height: 50px;
+    width: 18vw ;
+}
+h4{
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgb(255, 252, 252);
+
+}
+h3{
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+}
+.h4{
+    color: black;
+    font-size: 5px;
+}
+
+@media  screen and (max-width:600px) {
+ .loginForm{
+    width: 75vw;
+ }
+ .inputLogin{
+    width: 55vw;
+ }
+}
+@media  screen and (max-width:1060px) {
+    .img2{
+        width: 36vw;
+    }
+   }
+.img2{
+    height:46vh;
+    width:24vw;
+}
+.fl{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.circle{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+}
+.ml-4 {
+    margin-left: (4 * .25) !important;
+  }
+.mr-4 {
+    margin-right: (4 * .25) !important;
+  }
+  .mt-0{
+    margin-top: 0 !important;
+  }
+  .push{
+    margin-right: auto;
+  }
+  .margin{
+    margin-top: 22px;
+    margin-bottom: auto;
+    margin-right: 20px
+  }
+  .font{
+    font-family: 'Delicious Handrawn', cursive;
+    font-size: 73px;
+    color: white;
+  }
+.container{
+    
+    margin-top: -170px !important;
+}

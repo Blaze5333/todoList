@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+rel="stylesheet"
+/>
+    <title>Document</title>
+</head>
+<body class="flex">
+    <div class="size">
+        <div class="size1">
+        
+        <form action="/user/signup" method="post" enctype="multipart/form-data" class="flex2">
+            <!-- <h1>Create Your Account</h1> -->
+            <img src="/image/signup.png" class="img" alt="">  
+            <input class="inputfs" type="text" name="name" placeholder="Name">
+            <input class="input" type="text" name="age" placeholder="Age">
+            <input class="input" type="email" name="email" placeholder="Email">
+            <input class="input" type="password" name="password" placeholder="Password">
+            <input class="input" type="password" name="confirmPass" placeholder="Confirm Password">
+            <label class='lb'>Please upload a profile picture (*.jpeg/.png)</label>
+            <input class="input" type="file" name="userImage">
+            <button class="btnls" type="submit">Signup</button>
+            <div class="h4">Already have an account?<a href="/user/login">Log in</a></div>
+        </form>
+        
+    </div>
+    </div>
+    
+</body>
+</html>
