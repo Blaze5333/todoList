@@ -95,12 +95,28 @@ router.post('/login',(req,res,next)=>{
          }
     })
 })
+router.post('/postman',async(req,res)=>{
+    const data=new user({
+        username:req.body.username,
+        googleId:req.body.googleId
+    })
+   data.save().then((resp)=>{
+     res.json(resp)
+   }).catch((err)=>{
+    res.json(err)
+   })
+})
 router.get('/googleLogin',passport.authenticate('google',{
-    scope:['profile'],
-    prompt:"select_account"
+    scope:['profile']
 }))
 router.get('/googleRedirect',passport.authenticate('google'),(req,res)=>{
-    res.send(req.user)
+    console.log(req.user)
+    res.redirect(`http://localhost:3000/todolist?uid=${req.user._id}`)
+})
+router.post('/listitem',(req,res)=>{
+    
+    res.redirect('http://localhost:3000/todolist')
+
 })
 router.post('/logout',(req,res,next)=>{
     req.logout();

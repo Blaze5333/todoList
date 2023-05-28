@@ -3,56 +3,96 @@ const router=express.Router()
 const list=require('../models/listElements')
 const user=require('../models/user')
 const passport=require('passport')
-router.get('/',passport.authenticate('google'),(req,res)=>{
-   list.find({userId:req.user._id}).populate("userId","username image").then((data)=>{
-      if(data.length>0){
-      console.log(data[0].userId.username)
-      res.render('Dashboard',{items:data[0].item,image:req.body.image,id:req.user._id})
+const googleAuth=require('../middleware/googleAuth')
+const bodyParser = require('body-parser')
+const { isValidObjectId } = require('mongoose')
+router.post('/listitem1',async(req,res)=>{
+   console.log('yes'+isValidObjectId('71d832fe39746da35a38e8'))
+   if(isValidObjectId(req.body.id)===false){
+      res.send({
+         error:'Not A Valid Id'
+      })
+   }
+   else{
+       user.find({_id:req.body.id}).then((data)=>{
+      if(data.length===0){
+         // res.render('404')
       }
       else{
-         res.render('Dashboard',{image:req.user.image,items:[""],id:req.user._id
-      })
-         
+          list.find({userId:req.body.id}).populate('userId','username image').then((data)=>{
+        if(data.length==0){
+         const data=new list({
+            item:[""],
+            userId:req.body.id
+         }).save().then(()=>{
+            list.find({userId:req.body.id}).populate('userId','username image').then((data1)=>{
+               res.send({
+                  item:data1[0].item,
+                  username:data1[0].userId.username,
+                  image:data1[0].userId.image
+               })
+            })
+         })
+        }
+        else{
+         res.send({
+            item:data[0].item,
+            username:data[0].userId.username,
+            image:data[0].userId.image
+         }
+
+         )
+        }
+     })
       }
    })
+   }
+   // if(!ObjectId.isValid(req.body.id)){
+   //    res.render('404')
+   // }
+  
+   // console.log(`You are funny from get ${JSON.stringify(req.user)}`)
+    
    
 })
-router.post('/list/:userId',(req,res)=>{
-     const arr=[]
-     const item=req.body.item
-     console.log(item)
-     arr.push(item)
-     console.log(arr)
-     list.find({userId:req.params.userId}).then((data)=>{
-      
-      
-      // console.log(ar)
-      // console.log(data.length)
-      if(data.length===0){
-         const arr=[item]
-         console.log(data)
-         const dataItem=new list({
-            item:arr,
-            userId:req.params.userId
-         })
-         dataItem.save().then(()=>{
-            console.log('done')
-         }).catch(()=>{console.log(err)})
-      }else{
-         const ar=data[0].item
-         ar.push(item)
-         list.findOneAndUpdate({userId:req.params.userId},{item:ar}).then(()=>{
-            console.log('updated')
-         }).catch((err)=>{
-            console.log(err)
-         })
+
+router.post('/listitem',async(req,res)=>{
+   // console.log(req.body.id)
+   // console.log(req.user)
+   let arr=[]
+ list.find({userId:req.user[0]._id}).then((resp)=>{
+      arr=resp[0].item
+      // console.log(arr)
+      console.log(arr)
+      const date=new Date()
+      const fulldate=`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+      const time=`${date.getHours()}:${date.getMinutes()}`
+      const ar={
+         "item":req.body.item,
+         "date":`${fulldate} (${time})`
       }
-     res.redirect("/dashboard/"+req.params.userId)
-     })
-          
-      
-      
+      arr.push(ar)
+      list.findOneAndUpdate({userId:req.user[0]._id},{item:arr}).then(()=>{
+
+      })
+ })  
+ 
+   res.redirect(`http://localhost:3000/todolist?uid=${req.user[0]._id}`)
 })
+router.post('/deleteitem',(req,res)=>{
+   const delitem=Object.keys(req.body)[0]
+   
+   list.find({userId:req.user[0]._id}).then((data)=>{
+      let arr=data[0].item
+      console.log(arr)
+      arr=arr.filter((elem)=>elem.item?elem.item!=delitem:elem)
+      list.findOneAndUpdate({userId:req.user[0]._id},{item:arr}).then((data)=>{
+         console.log(data)
+      })
+   })
+   res.redirect(`http://localhost:3000/todolist?uid=${req.user[0]._id}`)
+})
+
 
 
 

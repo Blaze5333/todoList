@@ -1,7 +1,11 @@
 import React from 'react'
 import image from "./pictures/todolist.png"
 import './component.css'
+import axios from 'axios'
 export default function HomePage() {
+  const gotolist=()=>{
+   axios.get('http;//localhost:5000/')
+  }
   return (
     <div>
     <div className='flex'>
@@ -14,6 +18,7 @@ export default function HomePage() {
         <h1 className='size' style={{color:"green"}}>Your•</h1>
         <h1 className='size' style={{color:"black"}}>To-do•List.</h1>
         </div>
+        <button className='btn' onClick={gotolist}>To Do List-{'>'}</button>
     </div>
       <img src={image} className='box1' alt='not available'></img>
       </div>

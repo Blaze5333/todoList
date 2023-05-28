@@ -1,7 +1,7 @@
 import React from 'react'
 import "./component.css"
 import icon from "./pictures/icon.png"
-export default function Navbar() {
+export default function Navbar(props) {
   const locate=()=>{
 
   }
@@ -26,13 +26,14 @@ export default function Navbar() {
       <li class="nav-item">
         <a class="nav-link hover" style={{fontWeight:"1000",fontSize:"20px"}} href="/about">About</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action='/signupPage'>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={locate}>Login</button>
-    </form>
+     {props.buttonName==="Login"?
+     <form class="form-inline my-2 my-lg-0" action='/signupPage'>
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={locate}>Login</button></form>
+     :<form class="form-inline my-2 my-lg-0" method='post' action='http://localhost:5000/user/logout'>
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={locate}>LogOut</button></form>}
+      
+    
   </div>
 </nav>
   )

@@ -17,24 +17,28 @@ passport.deserializeUser((id,done)=>{
 passport.use(
     new googleStrategy({
     //options for the google strategy
-    callbackURL:"http://localhost:5000/dashboard",
+    // callbackURL:"http://localhost:3000/todolist",
+    callbackURL:"http://localhost:5000/user/googleRedirect",
     clientID:keys.google.clientId,
     clientSecret:keys.google.clientSecret,
 },(accessToken,refreshToken,profile,done)=>{
+    console.log( "hello",profile)
     user.find({googleId:profile.id}).then((data)=>{
+        
         if(data.length===0){
+            console.log("data not present")
         const saveData=new user({
         username:profile.displayName,
         googleId:profile.id,
         image:profile.photos[0].value
-    }).save().then((data)=>{
-        console.log(data)
-    done(null,data[0])
+    }).save().then((data1)=>{
+        console.log(data1)
+        done(null,data1)
 } 
 ).catch((err)=>{
 
         console.log(err)
-        done()
+        done(null,err)
     })
 }
 else{
@@ -49,3 +53,4 @@ else{
     
     // done()
 }))
+

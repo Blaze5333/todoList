@@ -2,9 +2,17 @@ const  express=require('express')
 const bodyParse=require('body-parser')
 const mongoose=require('mongoose')
 const app=express()
+const keys=require('./config/keys')
+mongoose.connect(keys.mongodb.uri).then(()=>{
+    console.log("Conneceted to database")
+})
 const path=require('path')
-app.use(bodyParse.urlencoded({extended:true}))
-app.use(express.json())
+const cors=require('cors')
+app.use(cors())
+app.use(bodyParse.urlencoded({extended:false}))
+app.use(bodyParse.json())
+
+// app.use(express.json())
 app.use(express.static(path.join(__dirname,'/public')))
 app.set('view engine','ejs')
 mongoose.pluralize(false)
@@ -16,7 +24,7 @@ const cookieSession=require('cookie-session')
 const passportSetup=require('./config/passportSetup')
 const passport=require('passport')
 app.use(morgan('dev'))
-const keys=require('./config/keys')
+
 app.use(cookieSession({
     maxAge:24*60*60*1000,
     keys:[keys.session.cookieKey]
@@ -34,7 +42,7 @@ app.use((req,res,next)=>{
    next()
 })
 
-mongoose.connect(keys.mongodb.uri)
+
 const productRouter=require('./routes/product')
 const orderRouter=require('./routes/orders')
 const userRouter=require('./routes/user')
@@ -42,7 +50,11 @@ const dashboardRouter=require('./routes/dashboard')
 app.use('/orders',orderRouter)
 app.use('/products',productRouter)
 app.use('/user',userRouter)
-app.use('/dashboard',dashboardRouter)
+app.use('/info',dashboardRouter)
+app.get('/',(req,res)=>{
+    res.send(req.user)
+})
+
 app.listen(5000,()=>{
     console.log('connected')
 })
